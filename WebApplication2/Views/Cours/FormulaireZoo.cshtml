@@ -1,0 +1,115 @@
+﻿@model Cours.Models.ModeleVueZoo
+@using Cours.Models
+@{
+    Layout = null;
+}
+
+<!-- FORMULAIRE HERVE LABENERE-->
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Formulaire</title>
+</head>
+<body>
+    <form method="post" action="/Cours/RecevoirDescriptionZoo">
+        <h2>Formulaire classique du Zoo en HTML</h2>
+        <h3>Affiché par : @ViewBag.info</h3>
+        <table>
+            <thead></thead>
+            <tbody>
+                <!-- les boutons radio -->
+                <tr>
+                    <td>Animal dangereux ?</td>
+                    <td>
+                        @foreach (ModeleApplicationZoo.Item item in @Model.RadioButtonFieldItemsDangereux)
+                        {
+                            string strChecked = item.Value == @Model.RadioButtonFieldDanger ? "checked=\"checked\"" : "";
+                            <input type="radio" name="RadioButtonFieldDanger" value="@item.Value" @strChecked />@item.Label
+                            <text/>
+                        }
+                    </td>
+                </tr>
+                <!-- les cases à cocher -->
+                <tr>
+                    <td>Origine ?</td>
+                    <td>
+                        @{
+                            foreach (ModeleApplicationZoo.Item item in @Model.CheckBoxesFieldItemsOrigine)
+                            {
+                                string strChecked = @Model.CheckBoxesFieldOrigine.Contains(item.Value) ? "checked=\"checked\"" : "";
+                                <input type="checkbox" name="CheckBoxesFieldOrigine" value="@item.Value" @strChecked />@item.Label
+                                <text/>
+                            }
+                        }
+                    </td>
+                    <!-- le champ de saisie texte monoligne -->
+                <tr>
+                    <td>Nom / Surnom</td>
+                    <td>
+                        <input type="text" name="TextFieldNom" value="@Model.TextFieldNom" size="30" />
+                    </td>
+                </tr>
+                <!-- le champ de saisie d'un mot de passe -->
+                <tr>
+                    <td>Secrets</td>
+                    <td>
+                        <input type="password" name="PasswordField" value="@Model.PasswordField" size="30" />
+                    </td>
+                </tr>
+                <!-- le champ de saisie texte multilignes -->
+                <tr>
+                    <td>Quelques commentaires sur l'animal</td>
+                    <td>
+                        <textarea name="TextAreaFieldCommentaires" cols="40" rows="3">@Model.TextAreaFieldCommentaires</textarea>
+                    </td>
+                </tr>
+                <!-- la liste déroulante -->
+                <tr>
+                    <td>Liste déroulante des repas</td>
+                    <td>
+                        <select name="DropDownListFieldRepas">
+                            @{
+                                foreach (ModeleApplicationZoo.Item item in @Model.DropDownListFieldItemsRepas)
+                                {
+                                    string strChecked = item.Value == @Model.DropDownListFieldRepas ? "selected=\"selected\"" : "";
+                                    <option value="@item.Value" @strChecked>@item.Label</option>
+                                }
+                            }
+                        </select>
+                </tr>
+                <!-- la liste à choix unique -->
+                <tr>
+                    <td>Type d'animal - Liste déroulante</td>
+                    <td>
+                        <!-- la liste à choix multiple <select name="SimpleChoiceListFielType" size="3"> -->
+                        <select name="DropDownListFieldTypeAnimal">
+                            @{
+                                // foreach (ModeleApplicationZoo.Item item in @Model.SimpleChoiceListFieldItemsType)
+                                foreach (ModeleApplicationZoo.Item item in @Model.DropDownListFieldItemsTypeAnimal)
+                                {
+                                    string strChecked = item.Value == @Model.DropDownListFieldTypeAnimal ? "selected=\"selected\"" : "";
+                                    <option value="@item.Value" @strChecked>@item.Label</option>
+                                }
+                            }
+                        </select>
+</tr>
+                    <!-- la liste à choix multiple -->
+<tr>
+                    <td>Liste à choix multiple</td>
+                    <td>
+                        <select name="MultipleChoiceListField" size="3" multiple="multiple">
+                            @{
+                                foreach (ModeleApplicationZoo.Item item in @Model.MultipleChoiceListFieldItems)
+                                {
+                                    string strChecked = @Model.MultipleChoiceListField.Contains(item.Value) ? "selected=\"selected\"" : "";
+                                    <option value="@item.Value" @strChecked>@item.Label</option>
+                                }
+                            }
+                        </select>
+                </tr>
+            </tbody>
+        </table>
+        <input type="submit" value="Valider" />
+    </form>
+</body>
+</html>

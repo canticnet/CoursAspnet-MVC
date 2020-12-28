@@ -1,0 +1,22 @@
+﻿@model Cours.Models.Personne2
+@using Cours.Models
+
+@{
+  Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Définir qui a été choisi</title>
+</head>
+<body>
+    <h3>Formulaire-GET</h3>
+    <p>Personne choisie</p>
+    @Model.Prénom -- @Model.Nom -- @Model.IdPersonne
+    <br><br>
+    <a href="/Cours/ListerPersonnes">Liste des persponnes à choisir</a>
+</body>
+</html>

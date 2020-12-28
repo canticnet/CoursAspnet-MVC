@@ -1,0 +1,38 @@
+﻿@model Cours.Models.ViewModelZoo
+@using Cours.Models
+
+@{
+  Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Formulaire-ZOO</title>
+</head>
+<body>
+    <h3>Formulaire-ZOO</h3>
+    <p>Choisir dans la liste déroulante</p>
+    <form method="post" action="/Cours/ChoisirAnimal">
+
+        <select name="SelectedId">
+            @foreach (Animal a in Model.zoo)
+            {
+                if (@a.IdAnimal == Model.SelectedId)
+                {
+                    <option value="@a.IdAnimal" selected>@a.SurnomAnimal (@a.NomAnimal) </option>
+                }
+                else
+                {
+                    <option value="@a.IdAnimal">@a.SurnomAnimal (@a.NomAnimal) </option>
+                }
+            }
+        </select>
+        <input type="submit" value="Choisir l'animal">
+    </form>
+
+    
+</body>
+</html>
