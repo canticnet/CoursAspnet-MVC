@@ -1,0 +1,44 @@
+﻿@model Exemple_03.Models.Departement
+@using Exemple_03.Models
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DEPARTEMENT SICO/ASIM</title>
+</head>
+<body>
+    <h2>Visualiser les projets attribués du département ASIM de SICO</h2>
+    <table border="1">
+        <TR>
+            <TD>
+                CHEF DE PROJET
+            </TD>
+            <TD>
+                NOM DU PROJET
+            </TD>
+
+        </TR>
+        @foreach (Employe e in Model.Membres)
+        {
+            <TR>
+                <TD>
+                    @e.Nom
+                </TD>
+                <TD>
+                    @foreach (ProjetInformatique p in e.ListeProjetsDPT)
+
+                    {
+                        @p.Nom
+                    }
+                    </TD>
+            </TR>
+        }
+    </table>
+   
+        </body>
+</html>
