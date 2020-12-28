@@ -1,0 +1,1 @@
+Exercices basés sur l'excelent livre de Serge Tahe "Asp.net MVC par l'exemple"
